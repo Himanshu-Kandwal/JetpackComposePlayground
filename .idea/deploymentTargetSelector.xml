@@ -14,10 +14,7 @@
       <SelectionState runConfigName="PasswordTextFieldPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="AutoDisableButtonPreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="ShowToastButtonPreview">
+      <SelectionState runConfigName="ElevatedCardExamplePreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
