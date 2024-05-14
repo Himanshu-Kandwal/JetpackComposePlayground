@@ -69,10 +69,21 @@ fun LazyColumnWithMultipleTypesSample() {
         items(count = numList.size + alphabetList.size) { index ->
 
 
-            if (index % 5 == 0 && index / 5 < alphabetList.size) { //for index=0 , index%5==0 is always true, hence we make sure index is not 0 so this item does not appear as first item
+            /*
+            for index=0, index%5 will always be zero and our alphabet item will be
+            displayd at 0th index which is wrong.
+            so we make sure index is equal or more than 5
+            i.e we are at sixth item on lazy list and first 5 items(0th index to 4th index) were
+            NumberItem,
+            in index / 5 <= alphabetList.size , index/5 gives us index value to iterate
+            alphabetlist and index value is  less than or equal to alphabetList.size because we are reducing
+            1 while accessing its value in line char = alphabetList[-1 + index / 5], //-1 so 0th index also be seen
+
+             */
+            if (index >= 5 && index % 5 == 0 && index / 5 <= alphabetList.size) {
                 // Display alphabet item
                 AlphabetItem(
-                    char = alphabetList[index / 5], //-1 so 0th index also be seen
+                    char = alphabetList[-1 + index / 5], //-1 so 0th index also be seen
                     onClick = { char ->
                         Toast.makeText(context, "Alphabet clicked: $char", Toast.LENGTH_SHORT)
                             .show()
