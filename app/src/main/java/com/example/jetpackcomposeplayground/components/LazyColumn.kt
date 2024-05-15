@@ -79,6 +79,18 @@ fun LazyColumnWithMultipleTypesSample() {
             alphabetlist and index value is  less than or equal to alphabetList.size because we are reducing
             1 while accessing its value in line char = alphabetList[-1 + index / 5], //-1 so 0th index also be seen
 
+following will also work:
+ if (index % 5 == 0 && (index / 5 - 1) in 0..alphabetList.lastIndex) {
+                // Display alphabet item
+                AlphabetItem(
+                    char = alphabetList[index / 5 - 1], //-1 so 0th index also be seen
+                    onClick = { char ->
+                        Toast.makeText(context, "Alphabet clicked: $char", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                )
+            }
+
              */
             if (index >= 5 && index % 5 == 0 && index / 5 <= alphabetList.size) {
                 // Display alphabet item
