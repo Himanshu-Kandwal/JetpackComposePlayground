@@ -21,6 +21,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -145,7 +146,7 @@ fun ButtonOnTouch() {
                     else -> false
                 }
             }, colors = ButtonDefaults.buttonColors(
-            containerColor = if (isTouched) Color.Red.copy(alpha = 0.5f) else Color.Green
+            containerColor = if (isTouched) Color.Red.darkenColor() else Color.Green.darkenColor()
         )
 
     ) {
@@ -197,6 +198,15 @@ fun AutoDisableButtonPreview() {
 @Preview(showBackground = true)
 fun OutlinedButtonSamplePreview() {
     OutlinedButtonSample()
+}
+
+fun Color.darkenColor(factor: Float = 0.2f): Color {
+
+    val validatedFactor = if (factor > 1f) 1f else if (factor < 0f) 0f else factor
+
+    val blackOverlay = Color.Black.copy(alpha = validatedFactor)
+
+    return blackOverlay.compositeOver(this)
 }
 
 
